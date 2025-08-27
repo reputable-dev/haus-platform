@@ -1,5 +1,5 @@
 {
-  "installCommand": "bun install",
+  "installCommand": "npm install --legacy-peer-deps",
   "buildCommand": "bun run build:web",
   "outputDirectory": "dist",
   "framework": "create-react-app",
