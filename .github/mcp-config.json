@@ -1,0 +1,58 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": ""
+      }
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-playwright"]
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-filesystem", "/Users/alias/Downloads/haus-platform-main"]
+    },
+    "sqlite": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-sqlite"]
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-brave-search"],
+      "env": {
+        "BRAVE_API_KEY": ""
+      }
+    },
+    "fetch": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-fetch"]
+    }
+  },
+  "copilotConfiguration": {
+    "enabledFeatures": [
+      "code-completion",
+      "chat",
+      "pull-request-summaries",
+      "commit-message-suggestions",
+      "code-review",
+      "issue-triage",
+      "documentation-generation"
+    ],
+    "customInstructions": {
+      "codeStyle": "react-native-typescript",
+      "framework": "expo-router",
+      "backend": "hono-trpc",
+      "stateManagement": "react-query-zustand",
+      "styling": "nativewind"
+    },
+    "fileTypeInstructions": {
+      "*.tsx": "React Native component with TypeScript, use NativeWind for styling, implement proper error boundaries and loading states",
+      "*.ts": "TypeScript utility or hook, use strict typing, follow functional programming patterns",
+      "*/route.ts": "tRPC route handler, use Zod for validation, implement proper error handling",
+      "*.test.*": "Jest/testing-library tests, focus on user interactions and edge cases"
+    }
+  }
+}

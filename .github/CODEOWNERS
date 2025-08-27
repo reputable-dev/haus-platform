@@ -1,0 +1,26 @@
+# GitHub Copilot Integration - Code Ownership
+
+# Global ownership - GitHub Copilot can assist with any changes
+* @copilot
+
+# Backend API routes - Specialized Copilot guidance for tRPC
+/backend/ @copilot
+/backend/trpc/ @copilot
+
+# React Native components - Mobile-specific Copilot suggestions
+/components/ @copilot
+/app/ @copilot
+
+# TypeScript configuration and types
+*.ts @copilot
+*.tsx @copilot
+/types/ @copilot
+tsconfig.json @copilot
+
+# Package management and dependencies
+package.json @copilot
+bun.lock @copilot
+
+# GitHub Copilot configuration files
+/.github/ @copilot
+*.instructions.md @copilot

@@ -1,0 +1,45 @@
+# Files and directories to ignore for GitHub Copilot suggestions
+
+# Dependencies and build outputs
+node_modules/
+dist/
+build/
+.expo/
+.next/
+coverage/
+
+# Environment and secrets
+.env
+.env.local
+.env.production
+.env.staging
+*.key
+*.pem
+*.p12
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+.cache/
+
+# Bun specific
+bun.lockb
+
+# Platform specific
+ios/build/
+android/build/
+android/app/build/
+
+# Generated files that Copilot shouldn't suggest changes to
+*.generated.ts
+*.generated.tsx
+*.auto.ts
+*.auto.tsx

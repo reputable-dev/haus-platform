@@ -1,0 +1,21 @@
+{
+  "extends": ["ultracite"],
+  "ignorePatterns": [
+    "node_modules/",
+    ".expo/",
+    "dist/",
+    "build/",
+    "coverage/"
+  ],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["ultracite/ts"],
+      "rules": {
+        // Disable rules that are causing issues
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/explicit-function-return-type": "off"
+      }
+    }
+  ]
+}

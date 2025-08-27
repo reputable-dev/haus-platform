@@ -1,0 +1,14 @@
+{
+  "builds": [
+    {
+      "src": "backend/hono.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "backend/hono.ts"
+    }
+  ]
+}

@@ -1,0 +1,233 @@
+{
+  "name": "haus-platform",
+  "main": "expo-router/entry",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "./start.sh",
+    "start:phone": "./start.sh",
+    "start:mobile": "./start.sh",
+    "start:ios": "./start.sh",
+    "start:android": "bun --bun x expo start --android",
+    "start-web": "bun --bun x expo start --web",
+    "start-web-dev": "DEBUG=expo* bun --bun x expo start --web",
+    "dev": "bun --bun x expo start --clear",
+    "build:android": "eas build --platform android",
+    "build:ios": "eas build --platform ios",
+    "build:web": "expo export --platform web",
+    "build:analyze": "npx expo export --platform web --source-maps && npx @next/bundle-analyzer",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage --watchAll=false",
+    "test:integrations": "jest __tests__/integrations/",
+    "test:contracts": "jest __tests__/contracts --testTimeout=15000",
+    "test:contracts:comprehensive": "jest __tests__/contracts/pica-comprehensive.contract.test.ts --testTimeout=30000",
+    "test:contracts:matrix": "jest __tests__/contracts/pica-integration-matrix.test.ts --testTimeout=60000",
+    "test:contracts:all": "jest __tests__/contracts --testTimeout=60000",
+    "test:security": "jest __tests__/security --testTimeout=10000",
+    "test:integration": "jest __tests__/integration --testTimeout=20000",
+    "test:api": "jest __tests__/api --testTimeout=15000",
+    "test:performance": "jest __tests__/performance --testTimeout=25000",
+    "test:error-boundary": "jest __tests__/error-boundary --testTimeout=15000",
+    "test:e2e": "detox test",
+    "test:validate-contracts": "node scripts/validate-contract-tests.js",
+    "test:validate-security": "node scripts/validate-security-tests.js",
+    "test:validate-integration": "node scripts/validate-integration-tests.js",
+    "test:validate-api": "node scripts/validate-api-tests.js",
+    "test:validate-performance": "node scripts/validate-performance-tests.js",
+    "test:validate-resilience": "node scripts/validate-resilience-tests.js",
+    "test:report:contracts": "node scripts/generate-contract-report.js",
+    "test:report:security": "node scripts/generate-security-report.js",
+    "test:report:integration": "node scripts/generate-integration-report.js",
+    "test:report:api": "node scripts/generate-api-report.js",
+    "test:report:performance": "node scripts/generate-performance-report.js",
+    "test:report:resilience": "node scripts/generate-resilience-report.js",
+    "test:report:quality-gates": "node scripts/generate-quality-gates-report.js",
+    "test:visual": "jest --testPathPattern=visual --updateSnapshot",
+    "test:a11y": "jest --testPathPattern=a11y",
+    "test:network-resilience": "jest __tests__/error-boundary --testNamePattern='Network Error Resilience'",
+    "test:data-corruption": "jest __tests__/error-boundary --testNamePattern='Data Corruption Recovery'",
+    "test:state-errors": "jest __tests__/error-boundary --testNamePattern='State Management Error Recovery'",
+    "test:memory-analysis": "node scripts/memory-analysis.js",
+    "test:load": "artillery run load-tests/api-load-test.yml",
+    "test:bundle-size": "node scripts/bundle-size-check.js",
+    "test:api-performance": "node scripts/api-performance-benchmark.js",
+    "coverage:merge": "nyc merge coverage/ coverage/merged-coverage.json",
+    "coverage:report": "nyc report --reporter=html --reporter=json --reporter=text",
+    "coverage:validate": "node scripts/validate-coverage.js",
+    "coverage:get-percentage": "node scripts/get-coverage-percentage.js",
+    "performance:validate": "node scripts/validate-performance-slas.js",
+    "security:validate": "node scripts/validate-security-requirements.js",
+    "security:analyze-sast": "node scripts/analyze-sast-results.js",
+    "security:analyze-audit": "node scripts/analyze-audit-results.js",
+    "security:analyze-secrets": "node scripts/analyze-secret-results.js",
+    "security:scan": "echo 'Security scan placeholder - implement with available tools'",
+    "setup:test-env": "node scripts/setup-test-environment.js",
+    "setup:test-mocks": "node scripts/setup-test-mocks.js",
+    "setup:test-data": "node scripts/setup-test-data.js",
+    "setup:tdd-framework": "node scripts/setup-tdd-framework.js",
+    "db:setup:test": "node scripts/setup-test-database.js",
+    "db:seed:test": "node scripts/seed-test-database.js",
+    "lint": "ultracite lint",
+    "typecheck": "tsc --noEmit",
+    "test:framework": "node test-runner.js",
+    "test:all": "npm run test:framework && npm run test:contracts && npm run test:security && npm run test:integration && npm run test:api && npm run test:performance"
+  },
+  "dependencies": {
+    "@ai-sdk/openai": "^2.0.22",
+    "@ai-sdk/provider": "^2.0.0",
+    "@expo/vector-icons": "^14.1.0",
+    "@hono/trpc-server": "^0.4.0",
+    "@nkzw/create-context-hook": "^1.1.0",
+    "@picahq/ai": "^3.0.1",
+    "@picahq/authkit-node": "^2.0.0",
+    "@react-native-async-storage/async-storage": "2.1.2",
+    "@react-navigation/native": "^7.1.6",
+    "@tanstack/react-query": "^5.83.0",
+    "@trpc/client": "^11.4.3",
+    "@trpc/react-query": "^11.4.3",
+    "@trpc/server": "^11.4.3",
+    "expo": "53.0.22",
+    "expo-audio": "~0.4.9",
+    "expo-av": "~15.1.7",
+    "expo-blur": "~14.1.5",
+    "expo-constants": "~17.1.7",
+    "expo-crypto": "~14.1.4",
+    "expo-file-system": "~18.1.11",
+    "expo-font": "~13.3.2",
+    "expo-haptics": "~14.1.4",
+    "expo-image": "~2.4.0",
+    "expo-image-picker": "~16.1.4",
+    "expo-linear-gradient": "~14.1.5",
+    "expo-linking": "~7.1.7",
+    "expo-location": "~18.1.6",
+    "expo-router": "~5.1.5",
+    "expo-secure-store": "~14.2.4",
+    "expo-splash-screen": "~0.30.10",
+    "expo-status-bar": "~2.2.3",
+    "expo-symbols": "~0.4.5",
+    "expo-system-ui": "~5.0.11",
+    "expo-web-browser": "~14.2.0",
+    "hono": "^4.8.5",
+    "lucide-react-native": "^0.525.0",
+    "nativewind": "^4.1.23",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-native": "0.79.5",
+    "react-native-chart-kit": "^6.12.0",
+    "react-native-gesture-handler": "~2.24.0",
+    "react-native-reanimated": "~3.17.4",
+    "react-native-safe-area-context": "5.4.0",
+    "react-native-screens": "~4.11.1",
+    "react-native-svg": "15.11.2",
+    "react-native-web": "^0.20.0",
+    "react-native-webview": "13.13.5",
+    "superjson": "^2.2.2",
+    "zod": "^4.0.5",
+    "zustand": "^5.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@expo/ngrok": "^4.1.0",
+    "@testing-library/jest-native": "^5.4.3",
+    "@testing-library/react-hooks": "^8.0.1",
+    "@testing-library/react-native": "^12.4.3",
+    "@types/jest": "^29.5.12",
+    "@types/react": "~19.0.10",
+    "@typescript-eslint/eslint-plugin": "^8.41.0",
+    "@typescript-eslint/parser": "^8.41.0",
+    "artillery": "^2.0.12",
+    "detox": "^20.22.0",
+    "eslint": "^9.34.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jest-expo": "~53.0.10",
+    "nyc": "^15.1.0",
+    "secretlint": "^8.2.4",
+    "typescript": "~5.8.3",
+    "ultracite": "^5.2.5"
+  },
+  "jest": {
+    "preset": "jest-expo",
+    "setupFilesAfterEnv": ["@testing-library/jest-native/extend-expect"],
+    "testMatch": ["**/__tests__/**/*.(test|spec).(js|ts|tsx)"],
+    "collectCoverageFrom": [
+      "app/**/*.{ts,tsx}",
+      "backend/**/*.{ts,tsx}",
+      "components/**/*.{ts,tsx}",
+      "hooks/**/*.{ts,tsx}",
+      "utils/**/*.{ts,tsx}",
+      "!**/*.d.ts",
+      "!**/*.(test|spec).{ts,tsx}",
+      "!**/node_modules/**",
+      "!**/coverage/**",
+      "!**/.expo/**",
+      "!**/dist/**"
+    ],
+    "coverageReporters": [
+      "text",
+      "lcov",
+      "json",
+      "html"
+    ],
+    "coverageDirectory": "coverage",
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 95,
+        "lines": 95,
+        "statements": 95
+      }
+    },
+    "testEnvironment": "jsdom",
+    "transformIgnorePatterns": [
+      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg)"
+    ],
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/$1"
+    }
+  },
+  "detox": {
+    "testRunner": {
+      "args": {
+        "config": "e2e/jest.config.js",
+        "maxWorkers": 1,
+        "detectOpenHandles": false
+      }
+    },
+    "apps": {
+      "ios": {
+        "type": "ios.app",
+        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/HausPlatform.app"
+      },
+      "android": {
+        "type": "android.apk",
+        "binaryPath": "android/app/build/outputs/apk/debug/app-debug.apk"
+      }
+    },
+    "devices": {
+      "simulator": {
+        "type": "ios.simulator",
+        "device": {
+          "type": "iPhone 14 Pro"
+        }
+      },
+      "emulator": {
+        "type": "android.emulator",
+        "device": {
+          "avdName": "Pixel_4_API_30"
+        }
+      }
+    },
+    "configurations": {
+      "ios": {
+        "device": "simulator",
+        "app": "ios"
+      },
+      "android": {
+        "device": "emulator",
+        "app": "android"
+      }
+    }
+  },
+  "private": true
+}

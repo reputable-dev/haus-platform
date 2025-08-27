@@ -1,0 +1,55 @@
+name: GitHub Copilot Security Configuration
+
+# Security settings for GitHub Copilot integration
+security:
+  # Code suggestions security
+  suggestions:
+    # Block suggestions containing potential secrets
+    block_secrets: true
+    # Block suggestions with potential security vulnerabilities
+    block_vulnerabilities: true
+    # Allowed file extensions for suggestions
+    allowed_extensions:
+      - .ts
+      - .tsx
+      - .js
+      - .jsx
+      - .json
+      - .md
+      - .yml
+      - .yaml
+    
+  # Access control
+  access:
+    # Users who can modify Copilot configuration
+    admins:
+      - "@copilot"
+    # Minimum permission level for Copilot usage
+    minimum_permission: "write"
+    
+  # Code review requirements
+  review:
+    # Require review for Copilot-generated code changes
+    require_review: true
+    # Require approval from code owners
+    require_owner_approval: true
+    
+  # Sensitive patterns to block
+  blocked_patterns:
+    - "password\\s*=\\s*['\"][^'\"]*['\"]"
+    - "api[_-]?key\\s*=\\s*['\"][^'\"]*['\"]"
+    - "secret\\s*=\\s*['\"][^'\"]*['\"]"
+    - "token\\s*=\\s*['\"][^'\"]*['\"]"
+    - "private[_-]?key"
+    - "BEGIN\\s+(RSA\\s+)?PRIVATE\\s+KEY"
+    
+  # Approved external dependencies
+  dependencies:
+    allow_suggestions: true
+    require_approval_for_new: true
+    trusted_registries:
+      - "npm"
+      - "expo"
+      - "@expo/"
+      - "@tanstack/"
+      - "@trpc/"
