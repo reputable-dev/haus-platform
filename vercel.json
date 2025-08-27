@@ -1,16 +1,12 @@
 {
+  "installCommand": "bun install",
+  "buildCommand": "bun run build:web",
+  "outputDirectory": "dist",
+  "framework": "create-react-app",
   "builds": [
     {
       "src": "backend/hono.ts",
       "use": "@vercel/node"
-    },
-    {
-      "src": "package.json",
-      "use": "@vercel/node",
-      "config": {
-        "server": "backend/hono.ts",
-        "includeFiles": "dist/**"
-      }
     }
   ],
   "routes": [
@@ -22,9 +18,5 @@
       "src": "/(.*)",
       "dest": "/dist/index.html"
     }
-  ],
-  "installCommand": "bun install",
-  "buildCommand": "bun run build:web",
-  "outputDirectory": "dist",
-  "framework": "create-react-app"
+  ]
 }
